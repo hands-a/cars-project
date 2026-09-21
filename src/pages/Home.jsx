@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
-import Hero from '../components/ui/Hero';
-import BestSellers from '../components/ui/BestSellers';
-import Testimonials from '../components/ui/Testimonials';
+import Hero from '../components/sections/Hero';
+import FeaturedVehicles from '../components/sections/FeaturedVehicles';
+import Categories from '../components/sections/Categories';
+import Performance from '../components/sections/Performance';
+import Testimonials from '../components/sections/Testimonials';
+import CTA from '../components/sections/CTA';
 
 const Home = () => {
   return (
@@ -9,14 +12,14 @@ const Home = () => {
       initial={{ opacity: 0 }} 
       animate={{ opacity: 1 }} 
       exit={{ opacity: 0 }}
-      className="w-full"
+      className="w-full bg-[#050505]"
     >
-      
       <Hero />
-
-      
-      <BestSellers />
+      <FeaturedVehicles />
+      <Categories />
+      <Performance />
       <Testimonials />
+      <CTA />
     </motion.div>
   );
 };
