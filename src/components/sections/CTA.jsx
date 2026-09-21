@@ -6,8 +6,8 @@ const CTA = () => {
     <section className="py-32 bg-[#0a0a0a] text-center border-t border-white/5 relative z-10">
       <div className="max-w-4xl mx-auto px-8">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-8">Ready for your next adventure?</h2>
-          <p className="text-gray-400 text-lg mb-12 max-w-2xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tighter mb-6 leading-tight">Ready for your next adventure?</h2>
+          <p className="text-gray-400 text-base md:text-lg mb-12 max-w-2xl mx-auto">
             Book a test drive today and experience the unmatched luxury and capability of a Jeep Edition vehicle.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">

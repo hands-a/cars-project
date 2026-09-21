@@ -13,8 +13,8 @@ const Categories = () => {
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16">
            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-             <p className="text-gray-500 uppercase tracking-[0.3em] text-sm mb-2 font-bold">Find Your Path</p>
-             <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase">Categories</h2>
+             <p className="text-gray-500 uppercase tracking-[0.3em] text-sm md:text-base mb-2 font-bold">Find Your Path</p>
+             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter uppercase">Categories</h2>
            </motion.div>
            <Link to="/vehicles" className="hidden md:inline-block text-sm font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors border-b border-gray-400 hover:border-white pb-1">
              View All Vehicles

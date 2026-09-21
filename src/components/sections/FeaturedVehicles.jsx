@@ -8,8 +8,8 @@ const FeaturedVehicles = () => {
     <section className="py-24 bg-[#050505] text-white relative z-10">
       <div className="max-w-7xl mx-auto px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16 flex flex-col items-center text-center">
-          <p className="text-gray-500 uppercase tracking-[0.3em] text-sm mb-2 font-bold">The Lineup</p>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase">Featured Vehicles</h2>
+          <p className="text-gray-500 uppercase tracking-[0.3em] text-sm md:text-base mb-2 font-bold">The Lineup</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter uppercase">Featured Vehicles</h2>
           <div className="w-16 h-1 bg-white mt-6"></div>
         </motion.div>
 

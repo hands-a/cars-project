@@ -15,7 +15,7 @@ const Hero = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <h1 className="text-6xl md:text-9xl font-black text-white tracking-tighter leading-none mb-4">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter leading-none mb-4">
             THE NEW <br />
             <span className="text-gray-600">JEEP</span>
           </h1>
