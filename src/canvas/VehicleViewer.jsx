@@ -36,7 +36,7 @@ const VehicleViewer = ({ modelPath }) => {
       </div>
 
       <ErrorBoundary>
-        <Canvas camera={{ position: [4, 2, 6], fov: 35 }}>
+        <Canvas dpr={[1, 2]} performance={{ min: 0.5 }} camera={{ position: [4, 2, 6], fov: 35 }}>
           <Environment preset="studio" />
           <ambientLight intensity={0.5} />
           <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
@@ -52,7 +52,9 @@ const VehicleViewer = ({ modelPath }) => {
               opacity={0.7} 
               scale={15} 
               blur={2} 
-              far={4} 
+              far={4}
+              frames={1}
+              resolution={256}
             />
           </Suspense>
 

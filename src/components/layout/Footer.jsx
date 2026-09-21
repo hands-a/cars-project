@@ -3,24 +3,20 @@ import { MapPin, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
-    // Main Footer Section
     <footer className="bg-[#050505] text-white border-t border-white/5 pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-8">
-        
-        {/* Footer Grid */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
-          {/* Brand Info Column */}
+
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
             <h3 className="text-2xl font-black tracking-tighter uppercase mb-6">
               JEEP <span className="text-gray-600">EDITION</span>
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed mb-8 pr-4">
-              Experience the ultimate off-road luxury. Precision engineered for the bold. 
+              Experience the ultimate off-road luxury. Precision engineered for the bold.
               Discover our exclusive lineup of premium vehicles designed for every adventure.
             </p>
-            
-            {/* Social Media Icons (Inline SVG) */}
+
             <div className="flex space-x-4">
               {/* Instagram */}
               <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black transition-all">
@@ -74,7 +70,7 @@ const Footer = () => {
             <div className="space-y-4 text-gray-400 text-sm">
               <div className="flex items-start">
                 <MapPin className="w-4 h-4 mr-3 mt-1 flex-shrink-0" />
-                <p>Nasr City, Cairo<br/>Egypt</p>
+                <p>Nasr City, Cairo<br />Egypt</p>
               </div>
               <div className="flex items-center mt-4">
                 <Mail className="w-4 h-4 mr-3 flex-shrink-0" />

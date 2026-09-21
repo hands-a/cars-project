@@ -10,7 +10,6 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -24,7 +23,7 @@ const Contact = () => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="min-h-screen bg-[#050505] text-white pt-32 pb-20">
       <div className="max-w-7xl mx-auto px-8">
-        
+
         <div className="text-center mb-20">
           <p className="text-gray-500 uppercase tracking-[0.3em] text-sm mb-2 font-bold">Get in Touch</p>
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">Contact Us</h1>
@@ -32,7 +31,7 @@ const Contact = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          
+
           {/* Contact Info */}
           <div>
             <h2 className="text-2xl font-bold uppercase tracking-widest mb-8">Headquarters</h2>
@@ -71,7 +70,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="bg-[#0a0a0a] border border-white/5 p-8 rounded-2xl relative overflow-hidden">
             <h2 className="text-2xl font-bold uppercase tracking-widest mb-8">Send a Message</h2>
-            
+
             {isSubmitted ? (
               <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#0a0a0a]/95 backdrop-blur-sm p-8 text-center">
                 <CheckCircle2 className="w-16 h-16 text-green-500 mb-4" />
@@ -99,9 +98,9 @@ const Contact = () => {
                 <label className="text-xs uppercase tracking-widest text-gray-500 font-bold">Message</label>
                 <textarea required name="message" value={formData.message} onChange={handleChange} rows="4" className="bg-transparent border-b border-white/20 pb-2 focus:border-white outline-none transition-colors resize-none" />
               </div>
-              <button 
+              <button
                 disabled={isSubmitting}
-                type="submit" 
+                type="submit"
                 className="w-full flex items-center justify-center gap-2 py-4 bg-white text-black font-bold uppercase tracking-widest text-sm rounded hover:bg-gray-200 transition-colors disabled:opacity-50"
               >
                 {isSubmitting ? 'Sending...' : (

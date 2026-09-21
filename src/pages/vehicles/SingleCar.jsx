@@ -4,9 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import VehicleViewer from '../../canvas/VehicleViewer';
 import { carsData } from '../../data/carsData';
-import { ArrowLeft, Settings, Zap, Shield, Heart, Scale } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, Maximize2, Shield, Settings, Zap, ArrowRight, Heart, Scale, ShoppingCart } from 'lucide-react';
 import { useFavorites } from '../../hooks/useFavorites';
 import { useCompare } from '../../hooks/useCompare';
+import { useCart } from '../../hooks/useCart';
 
 const SingleCar = () => {
   const { id } = useParams();
@@ -14,6 +15,8 @@ const SingleCar = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const { isFavorite, toggleFavorite } = useFavorites();
   const { isComparing, toggleCompare } = useCompare();
+  const { cart, toggleCart } = useCart();
+  const isInCart = cart.includes(car?.id);
 
   // Error State: Redirect to 404
   if (!car) {
@@ -38,10 +41,19 @@ const SingleCar = () => {
           <div className="flex gap-4 z-10 relative">
             <button 
               onClick={() => toggleCompare(car.id)}
-              className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border transition-colors ${isComparing(car.id) ? 'bg-white text-black border-white' : 'border-white/20 text-gray-400 hover:text-white'}`}
+              className={`p-4 border rounded-xl flex items-center justify-center transition-colors
+                ${isComparing(car.id) ? 'bg-amber-500 border-amber-500 text-white' : 'border-white/10 hover:border-amber-500 hover:text-amber-500'}`}
+              title={isComparing(car.id) ? "Remove from Compare" : "Add to Compare"}
             >
-              <Scale className="w-4 h-4" />
-              {isComparing(car.id) ? 'Comparing' : 'Compare'}
+              <Scale className={`w-6 h-6`} />
+            </button>
+            <button 
+              onClick={() => toggleCart(car.id)}
+              className={`p-4 border rounded-xl flex items-center justify-center transition-colors
+                ${isInCart ? 'bg-emerald-500 border-emerald-500 text-white' : 'border-white/10 hover:border-emerald-500 hover:text-emerald-500'}`}
+              title={isInCart ? "Remove from Cart" : "Add to Cart"}
+            >
+              <ShoppingCart className={`w-6 h-6 ${isInCart ? 'fill-white' : ''}`} />
             </button>
             <button 
               onClick={() => toggleFavorite(car.id)}

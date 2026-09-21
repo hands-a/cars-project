@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Heart, Scale } from 'lucide-react';
+import { Heart, Scale, ShoppingCart } from 'lucide-react';
 
-const VehicleCard = ({ car, isFavorite = false, onToggleFavorite, isComparing = false, onToggleCompare }) => {
+const VehicleCard = ({ car, isFavorite = false, onToggleFavorite, isComparing = false, onToggleCompare, isInCart = false, onToggleCart }) => {
   return (
     <motion.div
       layout
@@ -13,20 +13,30 @@ const VehicleCard = ({ car, isFavorite = false, onToggleFavorite, isComparing = 
       className="group cursor-pointer bg-[#0a0a0a] rounded-2xl overflow-hidden border border-white/5 hover:border-white/20 transition-all flex flex-col h-full relative"
     >
       {/* Top Actions */}
-      <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+      <div className="absolute top-4 right-4 z-10 flex flex-col gap-2 translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
         <button 
           onClick={(e) => { e.preventDefault(); onToggleFavorite?.(car.id); }}
-          className="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border border-white/10 hover:bg-white hover:text-black transition-colors"
+          className={`w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border transition-all duration-300
+            ${isFavorite ? 'bg-red-500 border-red-500 text-white' : 'border-white/10 text-white hover:bg-red-500/20 hover:border-red-500 hover:text-red-500'}`}
           title={isFavorite ? "Remove from Favorites" : "Add to Favorites"}
         >
-          <Heart className={`w-5 h-5 ${isFavorite ? 'fill-black text-black' : 'text-white'}`} />
+          <Heart className={`w-5 h-5 ${isFavorite ? 'fill-white' : ''}`} />
         </button>
         <button 
           onClick={(e) => { e.preventDefault(); onToggleCompare?.(car.id); }}
-          className={`w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border border-white/10 hover:bg-white hover:text-black transition-colors ${isComparing ? 'bg-white text-black' : 'text-white'}`}
+          className={`w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border transition-all duration-300
+            ${isComparing ? 'bg-amber-500 border-amber-500 text-white' : 'border-white/10 text-white hover:bg-amber-500/20 hover:border-amber-500 hover:text-amber-500'}`}
           title={isComparing ? "Remove from Compare" : "Add to Compare"}
         >
           <Scale className={`w-5 h-5`} />
+        </button>
+        <button 
+          onClick={(e) => { e.preventDefault(); onToggleCart?.(car.id); }}
+          className={`w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border transition-all duration-300
+            ${isInCart ? 'bg-emerald-500 border-emerald-500 text-white' : 'border-white/10 text-white hover:bg-emerald-500/20 hover:border-emerald-500 hover:text-emerald-500'}`}
+          title={isInCart ? "Remove from Cart" : "Add to Cart"}
+        >
+          <ShoppingCart className={`w-5 h-5 ${isInCart ? 'fill-white' : ''}`} />
         </button>
       </div>
 
@@ -36,6 +46,7 @@ const VehicleCard = ({ car, isFavorite = false, onToggleFavorite, isComparing = 
           src={car.image} 
           alt={car.name}
           loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
         <span className="absolute top-4 left-4 text-[10px] uppercase tracking-[0.2em] bg-black/50 backdrop-blur-md text-white border border-white/10 px-3 py-1 font-bold rounded">

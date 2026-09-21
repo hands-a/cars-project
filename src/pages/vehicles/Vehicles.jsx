@@ -5,6 +5,7 @@ import VehicleCard from '../../components/vehicle/VehicleCard';
 import { Search, SlidersHorizontal } from 'lucide-react';
 import { useFavorites } from '../../hooks/useFavorites';
 import { useCompare } from '../../hooks/useCompare';
+import { useCart } from '../../hooks/useCart';
 
 const Vehicles = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -12,6 +13,7 @@ const Vehicles = () => {
   const [sortBy, setSortBy] = useState('default');
   const { isFavorite, toggleFavorite } = useFavorites();
   const { isComparing, toggleCompare } = useCompare();
+  const { cart, toggleCart } = useCart();
 
   const categories = ['All', ...new Set(carsData.map(car => car.category))];
 
@@ -122,6 +124,8 @@ const Vehicles = () => {
                 onToggleFavorite={toggleFavorite}
                 isComparing={isComparing(car.id)}
                 onToggleCompare={toggleCompare}
+                isInCart={cart.includes(car.id)}
+                onToggleCart={toggleCart}
               />
             ))}
           </AnimatePresence>

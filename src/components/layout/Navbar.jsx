@@ -2,21 +2,26 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Search, Heart, Scale, User } from 'lucide-react';
+import { Menu, X, Search, Heart, Scale, User, ShoppingCart } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
+import { useFavorites } from '../../hooks/useFavorites';
+import { useCart } from '../../hooks/useCart';
 
 const Navbar = () => {
   const location = useLocation();
   const { isAuthenticated } = useAuth();
+  const { favorites } = useFavorites();
+  const { cart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   // Handle scroll for sticky navbar styles
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const isScrolled = window.scrollY > 50;
+      setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -85,12 +90,25 @@ const Navbar = () => {
           <button className="text-gray-400 hover:text-white transition-colors" aria-label="Search">
             <Search className="w-5 h-5" />
           </button>
-          <Link to="/compare" className="text-gray-400 hover:text-white transition-colors" aria-label="Compare">
+          <Link to="/compare" className="text-gray-400 hover:text-amber-500 transition-colors" aria-label="Compare">
             <Scale className="w-5 h-5" />
           </Link>
-          <Link to="/favorites" className="text-gray-400 hover:text-white transition-colors" aria-label="Favorites">
+          <Link to="/favorites" className="relative text-gray-400 hover:text-red-500 transition-colors" aria-label="Favorites">
             <Heart className="w-5 h-5" />
+            {favorites?.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                {favorites.length}
+              </span>
+            )}
           </Link>
+          <button className="relative text-gray-400 hover:text-emerald-500 transition-colors" aria-label="Cart">
+            <ShoppingCart className="w-5 h-5" />
+            {cart?.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                {cart.length}
+              </span>
+            )}
+          </button>
           <Link to={isAuthenticated ? "/profile" : "/login"} className="text-gray-400 hover:text-white transition-colors" aria-label="Profile">
             <User className="w-5 h-5" />
           </Link>
@@ -103,6 +121,14 @@ const Navbar = () => {
 
         {/* Mobile Menu Toggle & Icons */}
         <div className="flex items-center gap-4 md:hidden z-50">
+           <button className="relative text-white" aria-label="Cart">
+            <ShoppingCart className="w-5 h-5" />
+            {cart?.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                {cart.length}
+              </span>
+            )}
+          </button>
            <Link to={isAuthenticated ? "/profile" : "/login"} onClick={closeMenu} className="text-white" aria-label="Profile">
             <User className="w-5 h-5" />
           </Link>
